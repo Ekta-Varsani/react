@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useEffect } from "react";
+import Style from "./Style";
+import ArrayList from "./ArrayList";
+import SendData from "./SendData";
+import PureFunction from "./PureFunction";
+import UseMemo from "./UseMemo";
+import Ref from "./Ref";
 
 function App() {
+  const [count, setCount] = useState(10);
+  const [data, setData] = useState(100);
+
+  function alertParent(data) {
+    alert(data)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Ref />
+
+      {/* <UseMemo /> */}
+      {/* <PureFunction /> */}
+      {/* <SendData alert={alertParent}></SendData> */}
+      {/* <ArrayList /> */}
+      {/* <Style /> */}
+      {/* <h1>count: {count}</h1>
+       <h1>data: {data}</h1>
+       <button onClick={() => setCount(count + 1)}>Update Count</button>
+       <button onClick={() => setData(data + 1)}>Update data</button> */}
     </div>
   );
 }
