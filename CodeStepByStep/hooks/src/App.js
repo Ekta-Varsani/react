@@ -1,11 +1,16 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Style from "./Style";
 import ArrayList from "./ArrayList";
 import SendData from "./SendData";
 import PureFunction from "./PureFunction";
 import UseMemo from "./UseMemo";
 import Ref from "./Ref";
+import Useref from "./UseRef";
+import ForwardRef from "./ForwardRef";
+import ControlledComp from "./ControlledComp";
+import UnControlledComp from "./UnControlledComp";
+import HOC from "./HOC";
 
 function App() {
   const [count, setCount] = useState(10);
@@ -15,10 +20,21 @@ function App() {
     alert(data)
   }
 
+  let inputRef = useRef(null)
+
+  function forwardReff() {
+      inputRef.current.value = "ekta"
+  }
+
   return (
     <div className="App">
-      <Ref />
-
+      <HOC />
+      {/* <UnControlledComp /> */}
+      {/* <ControlledComp /> */}
+      {/* <ForwardRef ref={inputRef}/>
+      <button onClick={forwardReff}>Update</button> */}
+      {/* <Useref /> */}
+      {/* <Ref /> */}
       {/* <UseMemo /> */}
       {/* <PureFunction /> */}
       {/* <SendData alert={alertParent}></SendData> */}
