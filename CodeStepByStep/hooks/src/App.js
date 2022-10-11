@@ -11,6 +11,7 @@ import ForwardRef from "./ForwardRef";
 import ControlledComp from "./ControlledComp";
 import UnControlledComp from "./UnControlledComp";
 import HOC from "./HOC";
+import GetPrevProp from "./GetPrevProp";
 
 function App() {
   const [count, setCount] = useState(10);
@@ -28,7 +29,10 @@ function App() {
 
   return (
     <div className="App">
-      <HOC />
+      <GetPrevProp  count={count}/>
+      <button onClick={() => setCount(Math.floor(Math.random() * 10))}>Update</button>
+
+      {/* <HOC /> */}
       {/* <UnControlledComp /> */}
       {/* <ControlledComp /> */}
       {/* <ForwardRef ref={inputRef}/>
