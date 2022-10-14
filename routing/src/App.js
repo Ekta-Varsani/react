@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <h1>Dynamic routing</h1>
-      <Router>
+      {/* <Router>
       {
         users.map((item) => 
           <div><Link to={"/user/"+item.id}>
@@ -28,16 +28,16 @@ function App() {
         )
       }
         {/* <Routes> */}
-          <Route path='/user/:id' ><DynamicRouting /></Route>
+          {/* <Route path='/user/:id' ><DynamicRouting /></Route> */}
         {/* </Routes> */}
-      </Router>
+      {/* </Router> */} 
       
 
-      {/* <NavBar />
-        <Routes>  
-          <Route index path="/home" element={<Home />}></Route>
-          <Route path="/about" element={<About />}></Route>
-        </Routes> */}
+       <NavBar />
+         {/* <Routes>   */}
+           <Route path="/about" ><About ></About></Route>
+           <Route path="/" exact={true}><Home ></Home></Route>
+        {/* </Routes> */}
     </div>
   );
 }
