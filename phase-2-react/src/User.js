@@ -50,36 +50,54 @@ function User() {
         })
     }
 
-    let file1;
+    let fd = new FormData();
+    var file1;
     let imageSrc
     function readURL(event) {
 
         if (event.target.files && event.target.files[0]) {
             const file = event.target.files[0];
-            console.log(file.name)
+            console.log(file)
             file1 = file.name
             setAddUser({
+                ...addUser,
                 image: file1
             })
+            fd.append('image', file1);
             const reader = new FileReader();
             reader.onload = e => imageSrc = reader.result;
             reader.readAsDataURL(file1 = file);
         }
-        inputHandler()
+        // inputHandler()
     }
 
+
+
+
     function onAddUser() {
-        console.log(JSON.stringify(addUser));
-        // fetch("http://192.168.0.73:4000/api/user/addUser", {
-        //     method: "POST",
-        //     headers: {
-        //         Accept: "application/json",
-        //         "Content-type": "application/json",
-        //     },
-        //     body: JSON.stringify(addUser),
-        // }).then((result) => {
-        //     displayUsers()
-        // });
+        console.log(file1);
+        
+        // fd.append('image', file1);
+        fd.append('UserName', addUser.UserName);
+        fd.append('countryId', addUser.countryId);
+        fd.append('Email', addUser.Email);
+        fd.append('PhoneNumber', addUser.PhoneNumber);
+        console.log(fd);
+        console.log(addUser);
+        fetch("http://192.168.0.73:4000/api/user/addUser", {
+            method: "POST",
+            mode: 'no-cors',
+            // headers: {
+            //     Accept: "application/json",
+            //     // 'Access-Control-Allow-Origin': '*',
+            //     "Content-type": "multipart/form-data", boundary: "****"
+                
+            // },
+            body: fd,
+        }).then((result) => {
+            console.log(result);
+            displayUsers()
+        });
     }
 
     function getDetailsofSelectedUser(data) {
@@ -111,72 +129,76 @@ function User() {
     return (
         <>
             <div className="container">
-                <div className="row mt-4">
-                    <div className="col-2">
-                        <label className="mt-0 imageProfile" htmlFor="choose-file" name="image" id="preview">
-                            <img className="rounded" src={imageSrc} id="img-preview" height="10px" width="60px" />
-                        </label>
-                        <input
-                            value={file1}
-                            type="file"
-                            id="choose-file"
-                            name="image"
+                {/* <form> */}
+                    <div className="row mt-4">
+                        <div className="col-2">
+                            <label className="mt-0 imageProfile" htmlFor="choose-file" name="image" id="preview">
+                                <img className="rounded" src={imageSrc} id="img-preview" height="10px" width="60px" />
+                            </label>
+                            <input
+                                value={file1}
+                                type="file"
+                                id="choose-file"
+                                name="image"
+                                hidden
+                                // onChange={inputHandler}
+                                onChange={readURL}
+                            />
+                        </div>
+                        <div className="col">
+                            <input
+                                value={addUser.UserName}
+                                className="form-control border border-info text-info"
+                                type="text"
+                                placeholder="name"
+                                name="UserName"
+                                onChange={inputHandler}
+                            />
+                        </div>
+                        <div className="col">
+                            <input
+                                value={addUser.Email}
+                                className="form-control border border-info text-info"
+                                type="email"
+                                placeholder="email"
+                                name="Email"
+                                onChange={inputHandler}
+                            />
+                        </div>
+                        <div className="col">
+                            <select
+                                // value={addUser.countryId._id}
+                                className="form-select border border-info text-info"
+                                name="countryId"
+                                onChange={inputHandler}
+                            >
+                                {countryList.map((country) => (
+                                    <option value={country._id}>{country.CounteryName}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="col">
+                            <input
+                                value={addUser.PhoneNumber}
+                                className="form-control border border-info text-info"
+                                type="number"
+                                placeholder="phone"
+                                name="PhoneNumber"
+                                onChange={inputHandler}
+                            />
+                        </div>
+                        <div className="col-1">
+                            <button
+                                className="btn btn-info text-white float-end"
+                                type="submit"
+                                onClick={onAddUser}
+                            >
+                                +
+                            </button>
+                        </div>
+                    </div>
+                {/* </form> */}
 
-                            // onChange={inputHandler}
-                            onChange={readURL}
-                        />
-                    </div>
-                    <div className="col">
-                        <input
-                            value={addUser.UserName}
-                            className="form-control border border-info text-info"
-                            type="text"
-                            placeholder="name"
-                            name="UserName"
-                            onChange={inputHandler}
-                        />
-                    </div>
-                    <div className="col">
-                        <input
-                            value={addUser.Email}
-                            className="form-control border border-info text-info"
-                            type="email"
-                            placeholder="email"
-                            name="Email"
-                            onChange={inputHandler}
-                        />
-                    </div>
-                    <div className="col">
-                        <select
-                            // value={addUser.countryId._id}
-                            className="form-select border border-info text-info"
-                            name="countryId"
-                            onChange={inputHandler}
-                        >
-                            {countryList.map((country) => (
-                                <option value={country._id}>{country.CounteryName}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="col">
-                        <input
-                            value={addUser.PhoneNumber}
-                            className="form-control border border-info text-info"
-                            type="number"
-                            placeholder="phone"
-                            name="PhoneNumber"
-                            onChange={inputHandler}
-                        />
-                    </div>
-                    <div className="col-1">
-                        <button
-                            className="btn btn-info text-white float-end"
-                            onClick={onAddUser}
-                        >
-                            +
-                        </button>
-                    </div>
-                </div>
                 <div className="mt-5">
                     <table id="myTable" className="table ">
                         <thead className="bg-info text-white">
