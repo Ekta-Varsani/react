@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Style from "./Style";
 import ArrayList from "./ArrayList";
 import SendData from "./SendData";
@@ -12,6 +12,7 @@ import ControlledComp from "./ControlledComp";
 import UnControlledComp from "./UnControlledComp";
 import HOC from "./HOC";
 import GetPrevProp from "./GetPrevProp";
+import UseReducer from "./UseReducer";
 
 function App() {
   const [count, setCount] = useState(10);
@@ -29,8 +30,10 @@ function App() {
 
   return (
     <div className="App">
-      <GetPrevProp  count={count}/>
-      <button onClick={() => setCount(Math.floor(Math.random() * 10))}>Update</button>
+      <UseReducer />
+
+      {/* <GetPrevProp  count={count}/>
+      <button onClick={() => setCount(Math.floor(Math.random() * 10))}>Update</button> */}
 
       {/* <HOC /> */}
       {/* <UnControlledComp /> */}
