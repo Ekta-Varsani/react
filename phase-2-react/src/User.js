@@ -23,7 +23,7 @@ function User() {
 
 
     function displayUsers() {
-        fetch("http://192.168.0.73:4000/api/user/getuser/alluser").then(
+        fetch("http://192.168.0.77:4000/api/user/getuser/alluser").then(
             (result) => {
                 result.json().then((res) => {
                     console.log(res);
@@ -32,7 +32,7 @@ function User() {
             }
         );
 
-        fetch("http://192.168.0.73:4000/api/countery").then((result) => {
+        fetch("http://192.168.0.77:4000/api/countery").then((result) => {
             result.json().then((res) => {
                 setCountryList(res);
             });
@@ -50,7 +50,7 @@ function User() {
         })
     }
 
-    let fd = new FormData();
+   
     var file1;
     let imageSrc
     function readURL(event) {
@@ -63,7 +63,7 @@ function User() {
                 ...addUser,
                 image: file1
             })
-            fd.append('image', file1);
+            // fd.append('image', file1);
             const reader = new FileReader();
             reader.onload = e => imageSrc = reader.result;
             reader.readAsDataURL(file1 = file);
@@ -76,21 +76,21 @@ function User() {
 
     function onAddUser() {
         console.log(file1);
-        
-        // fd.append('image', file1);
+        let fd = new FormData();
+        fd.append('image', addUser.image);
         fd.append('UserName', addUser.UserName);
         fd.append('countryId', addUser.countryId);
         fd.append('Email', addUser.Email);
         fd.append('PhoneNumber', addUser.PhoneNumber);
         console.log(fd);
         console.log(addUser);
-        fetch("http://192.168.0.73:4000/api/user/addUser", {
+        fetch("http://192.168.0.77:4000/api/user/addUser", {
             method: "POST",
             mode: 'no-cors',
             // headers: {
-            //     Accept: "application/json",
+            //     // Accept: "application/json",
             //     // 'Access-Control-Allow-Origin': '*',
-            //     "Content-type": "multipart/form-data", boundary: "****"
+            //     "Content-type": "multipart/form-data"
                 
             // },
             body: fd,
@@ -129,7 +129,7 @@ function User() {
     return (
         <>
             <div className="container">
-                {/* <form> */}
+                <form encType="multipart/form-data">
                     <div className="row mt-4">
                         <div className="col-2">
                             <label className="mt-0 imageProfile" htmlFor="choose-file" name="image" id="preview">
@@ -197,7 +197,7 @@ function User() {
                             </button>
                         </div>
                     </div>
-                {/* </form> */}
+                </form>
 
                 <div className="mt-5">
                     <table id="myTable" className="table ">

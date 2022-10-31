@@ -1,21 +1,27 @@
 import './App.css';
+import { useState } from 'react';
 import Country from './Country';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import NavBar from './NavBar';
 import User from './User';
-import Login from './Login';
-
+import Login from './LogIn';
+import NavBar from './NavBar';
 
 function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  function loginHandler(data) {
+    setIsLoggedIn(data)
+  }
+  
   return (
     <div className="">
-
       <Router>
-        <NavBar />
         <Routes>
-          {/* <Route path='/' element={< Login />} /> */}
-          <Route path='/' element={<Country />} />
-          <Route path='/user' element={<User />} />
+          <Route path='/' element={< Login loginBool={loginHandler}/>} />
+          <Route path='/navbar' element={< NavBar isLoggedIn={isLoggedIn} />} >
+            <Route path='country' element={<Country />} />
+            <Route path='user' element={<User />} />
+          </Route>
         </Routes>
       </Router>
     </div>

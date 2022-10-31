@@ -1,24 +1,31 @@
 import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
-function NavBar() {
+function NavBar(props) {
     return (
         <>
-            <nav class="navbar navbar-expand-sm bg-light">
-
-                <div class="container-fluid">
-
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <Link class="nav-link" to="/">Country</Link>
+            <nav className="navbar navbar-expand-sm bg-light">
+                <div className="container-fluid">
+                    <ul className="navbar-nav">
+                        {
+                            !props.isLoggedIn? <li className="nav-item">
+                            <Link className="nav-link" to="/">LogIn</Link>
+                        </li>: null
+                        }
+                        <li className="nav-item">
+                            <Link className="nav-link" to="country">Country</Link>
                         </li>
-                        <li class="nav-item">
-                            <Link class="nav-link" to="user">User</Link>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="user">User</Link>
                         </li>
-                        
+                        <li className="nav-item float-end">
+                            <Link className="nav-link" to="/">Log out</Link>
+                        </li>
                     </ul>
                 </div>
-
             </nav>
+            
+            <Outlet />
         </>
     )
 }

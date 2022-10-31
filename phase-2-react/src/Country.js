@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
-// import $ from 'jquery';
+import $ from 'jquery';
 
 function Country() {
     const [show, setShow] = useState(false);
@@ -51,7 +51,7 @@ function Country() {
     }
 
     function setCountries() {
-        fetch("http://192.168.0.73:4000/api/countery").then((result) => {
+        fetch("http://192.168.0.77:4000/api/countery").then((result) => {
             result.json().then((res) => {
                 setCountryList(res);
             });
@@ -86,7 +86,7 @@ function Country() {
     }
 
     function addCountry() {
-        fetch("http://192.168.0.73:4000/api/countery/create", {
+        fetch("http://192.168.0.77:4000/api/countery/create", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -107,7 +107,7 @@ function Country() {
     }
 
     function updateCountry() {
-        fetch(`http://192.168.0.73:4000/api/countery/update/${selectedCountryId}`, {
+        fetch(`http://192.168.0.77:4000/api/countery/update/${selectedCountryId}`, {
             method: "PUT",
             headers: {
                 "Accept": "application/json",
@@ -118,32 +118,44 @@ function Country() {
             result.json().then(res => {
                 handleClose()
                 setCountries()
-
+                const search = document.getElementById("search").value;
+                for (let i = 0; i < countryList.length; i++) {
+                    let list = countryList[i].CounteryName
+                    if (list) {
+        
+                        if (list.indexOf(search) > -1) {
+                            $('#' + i).show();
+                        }
+                        else {
+                            $('#' + i).hide();
+                        }
+                    }
+                }
             })
         })
     }
 
     function search(e) {
-        // const search = document.getElementById("search").value;
-        // for (let i = 0; i < countryList.length; i++) {
-        //     let list = countryList[i].CounteryName
-        //     if (list) {
+        const search = document.getElementById("search").value;
+        for (let i = 0; i < countryList.length; i++) {
+            let list = countryList[i].CounteryName
+            if (list) {
 
-        //         if (list.indexOf(search) > -1) {
-        //             $('#' + i).show();
-        //         }
-        //         else {
-        //             $('#' + i).hide();
-        //         }
-        //     }
-        // }
+                if (list.indexOf(search) > -1) {
+                    $('#' + i).show();
+                }
+                else {
+                    $('#' + i).hide();
+                }
+            }
+        }
     }
 
     return (
         <>
             <Container className="mt-5 ">
                 <Row>
-                    <Col className="col-10">
+                    <Col className="col-12 col-md-10">
                         <input
                             className="form-control form-control-lg"
                             id="search"
@@ -152,7 +164,7 @@ function Country() {
                             onChange={search}
                         />
                     </Col>
-                    <Col className="col-2 d-grid">
+                    <Col className="col-12 col-md-2 d-grid">
                         <button
                             className="btn btn-danger btn-lg"
                             onClick={() => {
@@ -167,7 +179,7 @@ function Country() {
                     {countryList.map((country, index) => {
                         return (
                             <>
-                                <div id={index} className="col-3 mt-3 mb-3">
+                                <div id={index} className="col-12 col-md-6 col-lg-3 mt-3 mb-3">
                                     <Card className="shadow">
                                         <Card.Header>
                                             <div className="row">
@@ -337,6 +349,7 @@ function Country() {
                     </div>
                 </Modal.Body>
             </Modal>
+            
         </>
     );
 }
