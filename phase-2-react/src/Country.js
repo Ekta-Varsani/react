@@ -51,7 +51,7 @@ function Country() {
     }
 
     function setCountries() {
-        fetch("http://192.168.0.77:4000/api/countery").then((result) => {
+        fetch("http://192.168.0.10:4000/api/countery").then((result) => {
             result.json().then((res) => {
                 setCountryList(res);
             });
@@ -86,7 +86,7 @@ function Country() {
     }
 
     function addCountry() {
-        fetch("http://192.168.0.77:4000/api/countery/create", {
+        fetch("http://192.168.0.10:4000/api/countery/create", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -107,7 +107,7 @@ function Country() {
     }
 
     function updateCountry() {
-        fetch(`http://192.168.0.77:4000/api/countery/update/${selectedCountryId}`, {
+        fetch(`http://192.168.0.10:4000/api/countery/update/${selectedCountryId}`, {
             method: "PUT",
             headers: {
                 "Accept": "application/json",

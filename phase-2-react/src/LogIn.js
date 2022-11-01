@@ -20,7 +20,7 @@ function LogIn(props) {
 
     async function inputHandler() {
         loginBool = true
-        const response = await fetch(`http://192.168.0.77:4000/api/login`, {
+        const response = await fetch(`http://192.168.0.10:4000/api/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(loginInfo)
@@ -38,7 +38,7 @@ function LogIn(props) {
         }
 
 
-        // fetch("http://192.168.0.77:4000/api/login", {
+        // fetch("http://192.168.0.10:4000/api/login", {
         //     method: "POST",
         //     headers: {
         //         Accept: "application/json",

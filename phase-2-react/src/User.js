@@ -23,7 +23,7 @@ function User() {
 
 
     function displayUsers() {
-        fetch("http://192.168.0.77:4000/api/user/getuser/alluser").then(
+        fetch("http://192.168.0.10:4000/api/user/getuser/alluser").then(
             (result) => {
                 result.json().then((res) => {
                     console.log(res);
@@ -32,7 +32,7 @@ function User() {
             }
         );
 
-        fetch("http://192.168.0.77:4000/api/countery").then((result) => {
+        fetch("http://192.168.0.10:4000/api/countery").then((result) => {
             result.json().then((res) => {
                 setCountryList(res);
             });
@@ -84,7 +84,7 @@ function User() {
         fd.append('PhoneNumber', addUser.PhoneNumber);
         console.log(fd);
         console.log(addUser);
-        fetch("http://192.168.0.77:4000/api/user/addUser", {
+        fetch("http://192.168.0.10:4000/api/user/addUser", {
             method: "POST",
             mode: 'no-cors',
             // headers: {

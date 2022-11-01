@@ -12,12 +12,12 @@ function App() {
   function loginHandler(data) {
     setIsLoggedIn(data)
   }
-  
+
   return (
     <div className="">
       <Router>
         <Routes>
-          <Route path='/' element={< Login loginBool={loginHandler}/>} />
+          <Route path='/' element={< Login loginBool={loginHandler} />} />
           <Route path='/navbar' element={< NavBar isLoggedIn={isLoggedIn} />} >
             <Route path='country' element={<Country />} />
             <Route path='user' element={<User />} />
