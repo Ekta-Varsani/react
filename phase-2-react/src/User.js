@@ -17,6 +17,20 @@ function User() {
 
     const [show, setShow] = useState(false);
 
+    const [filteredUsers, setFilteredUsers] = useState(userList);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    useEffect(() => {
+        setFilteredUsers(
+            userList.filter((user) => user.UserName.includes(searchTerm))
+        );
+    }, [searchTerm]);
+
+    function searchHandler(event) {
+        setSearchTerm(event.target.value);
+    }
+
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -28,6 +42,7 @@ function User() {
                 result.json().then((res) => {
                     console.log(res);
                     setUserList(res);
+                    setFilteredUsers(res)
                 });
             }
         );
@@ -50,7 +65,7 @@ function User() {
         })
     }
 
-   
+
     var file1;
     let imageSrc
     function readURL(event) {
@@ -71,9 +86,6 @@ function User() {
         // inputHandler()
     }
 
-
-
-
     function onAddUser() {
         console.log(file1);
         let fd = new FormData();
@@ -91,7 +103,7 @@ function User() {
             //     // Accept: "application/json",
             //     // 'Access-Control-Allow-Origin': '*',
             //     "Content-type": "multipart/form-data"
-                
+
             // },
             body: fd,
         }).then((result) => {
@@ -197,6 +209,9 @@ function User() {
                             </button>
                         </div>
                     </div>
+                    <div className="row mt-4">
+                        <input className="form-control border border-info text-info" type="search" placeholder="Search by name" onChange={searchHandler} />
+                    </div>
                 </form>
 
                 <div className="mt-5">
@@ -212,7 +227,7 @@ function User() {
                             </tr>
                         </thead>
                         <tbody>
-                            {userList.map((user, index) => {
+                            {filteredUsers.map((user, index) => {
                                 return (
                                     <>
                                         <tr>

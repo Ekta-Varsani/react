@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="App">
-      <UseReducer />
+      {/* <UseReducer /> */}
 
       {/* <GetPrevProp  count={count}/>
       <button onClick={() => setCount(Math.floor(Math.random() * 10))}>Update</button> */}
@@ -42,7 +42,7 @@ function App() {
       <button onClick={forwardReff}>Update</button> */}
       {/* <Useref /> */}
       {/* <Ref /> */}
-      {/* <UseMemo /> */}
+      <UseMemo />
       {/* <PureFunction /> */}
       {/* <SendData alert={alertParent}></SendData> */}
       {/* <ArrayList /> */}
