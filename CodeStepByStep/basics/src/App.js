@@ -32,11 +32,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        {
+        <RenderLifeCycle  />
+        {/* {
           this.state.show ? <HideShow /> : <h2>Removed!</h2>
         }
-
-        <button onClick={() => this.setState({show: !this.state.show})}>Toggle</button>
+        <button onClick={() => this.setState({show: !this.state.show})}>Toggle</button> */}
       </div>
     )
   }

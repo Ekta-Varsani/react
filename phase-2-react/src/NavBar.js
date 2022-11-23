@@ -1,25 +1,26 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import "./User.css"
 
 function NavBar(props) {
     return (
         <>
-            <nav className="navbar navbar-expand-sm bg-light">
+            <nav className="extra navbar navbar-expand-sm bg-light">
                 <div className="container-fluid">
                     <ul className="navbar-nav">
                         {
                             !props.isLoggedIn? <li className="nav-item">
-                            <Link className="nav-link" to="/">LogIn</Link>
+                            <NavLink className="nav-link" to="/">LogIn</NavLink>
                         </li>: null
                         }
                         <li className="nav-item">
-                            <Link className="nav-link" to="country">Country</Link>
+                            <NavLink className="nav-link" to="country">Country</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="user">User</Link>
+                            <NavLink className="nav-link" to="user">User</NavLink>
                         </li>
                         <li className="nav-item float-end">
-                            <Link className="nav-link" to="/">Log out</Link>
+                            <NavLink className="nav-link" to="/">Log out</NavLink>
                         </li>
                     </ul>
                 </div>

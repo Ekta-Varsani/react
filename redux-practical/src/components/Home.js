@@ -23,7 +23,14 @@ function Home(props) {
                         onClick={
                             () => { props.addToCartHandler({ pice: 1000, name: 'i phone 11' }) }
                         }>
-                        Add To Cart</button>
+                        Add To Cart
+                    </button>
+                    <button
+                        onClick={
+                            () => { props.removeFromCartHandler() }
+                        }>
+                        Remove From Cart
+                    </button>
                 </div>
             </div>
         </div>

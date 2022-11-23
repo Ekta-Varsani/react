@@ -5,3 +5,13 @@
     margin-left: 45%;
     cursor: pointer;
 }
+
+.active {
+    /* background-color: aquamarine; */
+    /* color: red; */
+    font-style: italic;
+}
+
+.extra ul{
+    display: flex
+}
