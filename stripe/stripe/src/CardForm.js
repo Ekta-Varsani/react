@@ -1,6 +1,10 @@
 import React, { useMemo, useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import Modal from "react-bootstrap/Modal";
+import {
+    GoogleReCaptchaProvider,
+    GoogleReCaptcha
+} from 'react-google-recaptcha-v3';
 
 const CardForm = () => {
     const [show, setShow] = useState(false);
@@ -34,7 +38,7 @@ const CardForm = () => {
             card: token.card,
             token: token.token,
             jwtToken:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiZXZhcnNhbmRkaUBnbWFpbC5jb20iLCJpYXQiOjE2Njg0MTUxMTR9.T2BR4tyB8rrXWs1CJnPsK3NDTL0OKxW0qbM4IxghUW8",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiZWt0YXZhcnNhbmkxM0BnbWFpbC5jb20iLCJpYXQiOjE2Njk5NTI4NDd9.STU1Fp3WDYuZvc1YyET8vcthW4d1F391jIDZUVacIrE",
         };
 
         console.log(data);
@@ -45,7 +49,7 @@ const CardForm = () => {
             body: JSON.stringify(data),
         });
 
-        console.log(response);
+        console.log(await response.json());
 
         console.log("[PaymentMethod]", payload);
         // console.log(payload.paymentMethod.id);
@@ -59,6 +63,32 @@ const CardForm = () => {
                     Add card
                 </button>
             </div>
+
+            {/* <GoogleReCaptchaProvider
+                reCaptchaKey="[Your recaptcha key]"
+                language="[optional_language]"
+                useRecaptchaNet="[optional_boolean_value]"
+                useEnterprise="[optional_boolean_value]"
+                scriptProps={{
+                    async: false, // optional, default to false,
+                    defer: false, // optional, default to false
+                    appendTo: 'head', // optional, default to "head", can be "head" or "body",
+                    nonce: undefined // optional, default undefined
+                }}
+                container={{ // optional to render inside custom element
+                    element: "[required_id_or_htmlelement]",
+                    parameters: {
+                        badge: '[inline|bottomright|bottomleft]', // optional, default undefined
+                        theme: 'dark', // optional, default undefined
+                    }
+                }}
+            >
+
+            </GoogleReCaptchaProvider>, */}
+
+            <GoogleReCaptchaProvider reCaptchaKey="192.168.0.10">
+                <GoogleReCaptcha />
+            </GoogleReCaptchaProvider>,
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

@@ -9,13 +9,13 @@ export default function cardItems(state = [], action) {
             // console.warn("reducer",action)
             return [
                 ...state,
-                {cardData: action.data}
+                { cardData: action.data }
             ]
-            case REMOVE_FROM_CART: 
-                return [
-                    ...state,
-                    {cardData: action.data}
-                ]
+        case REMOVE_FROM_CART:
+            return [
+                ...state,
+                { cardData: action.data }
+            ]
         default:
             return state
     }

@@ -27,7 +27,7 @@ function Home(props) {
                     </button>
                     <button
                         onClick={
-                            () => { props.removeFromCartHandler() }
+                            () => { props.removeFromCartHandler({ pice: 10000, name: 'i phone 12' }) }
                         }>
                         Remove From Cart
                     </button>
